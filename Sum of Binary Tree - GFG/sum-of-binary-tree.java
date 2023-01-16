@@ -77,13 +77,27 @@ class GfG{
 
 class BinaryTree
 {
+    static int sum = 0;
+    static void solve(Node root){
+        if(root == null) return;
+        
+        sum+= root.data;
+        solve(root.left);
+        solve(root.right);
+    }
     static int sumBT(Node root){
-        //Code
-        if(root == null) return 0;
+        // Approach 1
+        sum = 0;
+        solve(root);
+        return sum;
         
-        int ls = sumBT(root.left);
-        int rs = sumBT(root.right);
         
-        return ls + rs + root.data;
+        // Approach 2
+        // if(root == null) return 0;
+        
+        // int ls = sumBT(root.left);
+        // int rs = sumBT(root.right);
+        
+        // return ls + rs + root.data;
     }
 }
