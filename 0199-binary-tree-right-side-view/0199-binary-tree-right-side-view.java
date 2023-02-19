@@ -14,24 +14,40 @@
  * }
  */
 class Solution {
+    // Tc : O(N) SC: 
     public List<Integer> rightSideView(TreeNode root) {
-         List<Integer> ans = new ArrayList<>();
-      if(root == null) return ans;
-      
-      Queue<TreeNode> q = new LinkedList<>();
-      q.add(root);
-      
-      while(q.size() > 0){
-          
-          int size = q.size();
-          for(int i=0;i<size;i++){
-              TreeNode tmp = q.remove();
-              if(i == size-1) ans.add(tmp.val);
-              
-              if(tmp.left != null) q.add(tmp.left);
-              if(tmp.right != null ) q.add(tmp.right);
-          }
-      }
-      return ans;
+        
+        List<Integer> rv = new ArrayList<>();
+        if(root == null) return rv;
+        Queue<TreeNode> q = new ArrayDeque<>();
+        // add root to que
+        q.add(root);
+
+        while(q.size() != 0){
+            // getting size of cuurent lvl
+            int size = q.size();
+           
+            ArrayList<Integer> curr = new ArrayList<>();
+            while(size > 0){
+                TreeNode rnode = q.remove();
+                curr.add(rnode.val);
+                // adding left node
+                if(rnode.left != null){
+                    q.add(rnode.left);
+                }
+                // adding right child
+                if(rnode.right != null){
+                    q.add(rnode.right);
+                }
+                size--;
+            }
+            // for(int i=0;i<curr.size();i++){
+            //     if(i == curr.size()-1){
+            //         rv.add(curr.get(i));
+            //     }
+            // }
+            rv.add(curr.get(curr.size()-1));
+        }
+        return rv;
     }
 }
