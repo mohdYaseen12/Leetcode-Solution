@@ -1,6 +1,6 @@
 class Solution {
     public int singleNonDuplicate(int[] arr) {
-        int start = 0;
+         int start = 0;
         int end = arr.length-1;
         if(arr.length == 1) return arr[start];
         int ans = -1;
