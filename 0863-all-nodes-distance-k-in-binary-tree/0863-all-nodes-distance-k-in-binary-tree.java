@@ -8,65 +8,47 @@
  * }
  */
 class Solution {
-    void findParent(TreeNode root, HashMap<TreeNode, TreeNode> parent){
-        if(root == null){
-            return;
-        }
-        if(root.left != null){
-            parent.put(root.left,root);
-        }
-        if(root.right != null){
-            parent.put(root.right, root);
-        }
-        findParent(root.left,parent);
-        findParent(root.right,parent);
+    // building relation between child and parent
+    private void getParent(TreeNode root, Map<TreeNode,TreeNode> parent){
+        if(root == null) return;
+        if(root.left != null) parent.put(root.left, root);
+        if(root.right != null) parent.put(root.right,root);
+        getParent(root.left,parent);
+        getParent(root.right,parent);
     }
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        HashMap<TreeNode, TreeNode> parent = new HashMap<>(); // child -> parent map
-        findParent(root,parent);
+        List<Integer> ans = new ArrayList<>();
+        if(root == null) return ans;
+        Map<TreeNode, TreeNode> parent = new HashMap<>();
+        getParent(root,parent);
         
-        HashSet<TreeNode> visited = new HashSet<>();
-        List<Integer> ansList = new ArrayList<>();
-        Queue<TreeNode> q = new ArrayDeque<>();
+        Set<TreeNode> vis = new HashSet<>();
+        
+        Queue<TreeNode> q = new LinkedList<>();
         q.add(target);
-        visited.add(target);
-        
-        while(q.size() != 0){
+        int level = 0;
+        while(!q.isEmpty()){
             int size = q.size();
-            if( k == 0){
-                while(q.size() != 0){
-                    TreeNode temp = q.remove();
-                    
-                    ansList.add(temp.val);
+            for(int i=0;i<size;i++){
+                TreeNode node = q.poll();
+                if(node == null || vis.contains(node)) continue;
+                
+                // visiting cuur node
+                vis.add(node);
+                
+                if(level == k){
+                    ans.add(node.val);
                 }
-                return ansList;
+                q.add(node.left);
+                q.add(node.right);
+                q.add(parent.get(node));
             }
-            while(size > 0){
-                TreeNode rnode = q.remove();
-                
-                
-                // add left child if available
-                if(rnode.left != null && visited.contains(rnode.left) == false){
-                    visited.add(rnode.left);
-                    q.add(rnode.left);
-                }
-                
-                // add right child if available
-                if(rnode.right != null && visited.contains(rnode.right) == false){
-                    visited.add(rnode.right);
-                    q.add(rnode.right);
-                }
-                
-                // add parent to child if available
-                
-                if(parent.getOrDefault(rnode,null) != null && visited.contains(parent.get(rnode)) == false){
-                    visited.add(parent.get(rnode));
-                    q.add(parent.get(rnode));
-                }
-                size--;
-            }
-            k--;
+            level++;
         }
-        return ansList;
+        return ans;
     }
 }
+
+// target -> 1st step -> to find the target node
+// dfs -> k distance ele
+//
