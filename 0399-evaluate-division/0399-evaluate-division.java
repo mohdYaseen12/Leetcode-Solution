@@ -1,64 +1,74 @@
 class Solution {
+    class Node{
+        String dest;
+        double value;
+        Node(String dest, double value){
+            this.dest = dest;
+            this.value = value;
+        }
+    }
+    
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-         Map<String, Map<String, Double>> graph = makeGraph(equations, values);
+        int n = queries.size();
+        Map<String,List<Node>> graph = graph(equations,values);
         
-        double []ans = new double[queries.size()];
+        double[] res = new double[n];
         
-        // check for every Querie
-        // store it in ans array;
-        for(int i = 0; i < queries.size(); i++){
-            ans[i] = dfs(queries.get(i).get(0) , queries.get(i).get(1) , new HashSet<>(), graph);
+        // evaluating queries.
+        for(int i=0;i<n;i++){
+            List<String> query = queries.get(i);
+            String src = query.get(0); // getting srource from query
+            String des = query.get(1); // getting destination from query
+            
+            // do dfs with new visited
+            res[i] = dfs(graph,src,des,new HashSet<>());
         }
-        return ans;
+        return res;
+        
     }
-    private  Map<String, Map<String, Double>> makeGraph(List<List<String>> e, double[] values){
-        // build a graph
-        // like a -> b = values[i]
-        // and b -> a  = 1.0 / values[i];
-        Map<String, Map<String, Double>> graph = new HashMap<>();
-        String u, v;
+    
+    private double dfs(Map<String, List<Node>> graph, String src, String dest, Set<String> visited){
+        // base case
+        if(!graph.containsKey(src) || !graph.containsKey(dest)) return -1.0;
         
-        for(int i = 0; i < e.size(); i++){
-            u = e.get(i).get(0);
-            v = e.get(i).get(1);
-            
-            graph.putIfAbsent(u, new HashMap<>());
-            graph.get(u).put(v, values[i]);
-            
-            graph.putIfAbsent(v, new HashMap<>());
-            graph.get(v).put(u, 1/values[i]);
-            
-        }
-        return graph;
-    }
-    public double dfs(String src, String dest, Set<String> visited, Map<String, Map<String, Double>> graph){
-        // check the terminated Case
-        // if string is not present in graph return -1.0;
-        // like [a, e] or [x, x] :)
-        if(graph.containsKey(src ) == false)
-            return -1.0;
+        // we reachedd our destination i.e, source == destination
+        if(src.equals(dest)) return 1.0;
         
-        // simply say check src and dest are equal :) then return dest 
-        // store it in weight varaible;
-        //case like [a,a] also handle
-        if(graph.get(src).containsKey(dest)){
-            return graph.get(src).get(dest);
-        }
-        
+        // mark visited
         visited.add(src);
         
-        for(Map.Entry<String, Double> nbr : graph.get(src).entrySet()){
-            if(visited.contains(nbr.getKey()) == false){
-                double weight = dfs(nbr.getKey(), dest, visited, graph);
+        // check for neighbours
+        for(Node nextNode : graph.get(src)){
+            if(!visited.contains(nextNode.dest)){
+                double val = nextNode.value;
+                double ans = dfs(graph,nextNode.dest, dest,visited);
+                // ans = 1.0 means we have reached destiation
                 
-                // if weight is not -1.0(terminate case)
-                // then mutliply it 
-                // like in querie   a -> c => 2 * 3 = 6
-                if(weight != -1.0){
-                    return nbr.getValue() * weight;
+                if(ans != -1.0){
+                    return ans*val;
                 }
             }
         }
         return -1.0;
+        
+    }
+    
+    
+    // building graph
+    private Map<String, List<Node>> graph(List<List<String>> equations, double[] values){
+        Map<String, List<Node>> graph = new HashMap<>();
+        for(int i=0;i<equations.size();i++){
+            List<String> list = equations.get(i);
+            double val = values[i];
+            String src = equations.get(i).get(0); // gettiing src from given eq
+            String des = equations.get(i).get(1);
+            
+            graph.putIfAbsent(src,new ArrayList<>());
+            graph.putIfAbsent(des,new ArrayList<>());
+            
+            graph.get(src).add(new Node(des,val));
+            graph.get(des).add(new Node(src,1/val));
+        }
+        return graph;
     }
 }
