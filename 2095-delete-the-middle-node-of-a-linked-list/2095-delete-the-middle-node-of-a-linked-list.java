@@ -9,30 +9,48 @@
  * }
  */
 class Solution {
-    private ListNode findMiddle(ListNode head){
+//     private ListNode findMiddle(ListNode head){
+//         ListNode slow = head;
+//         ListNode fast = head;
+        
+//         while(fast != null && fast.next != null){
+//             slow = slow.next;
+//             fast = fast.next.next;
+//         }
+//         return slow;
+//     }
+    
+    
+//     public ListNode deleteMiddle(ListNode head) {
+//         if(head == null || head.next == null) return null;
+//         ListNode mid = findMiddle(head);
+//         ListNode curr = head;
+//         while(curr.next != null && curr.next != mid){
+//             curr = curr.next;
+//         }
+        
+//         curr.next = mid.next;
+//         mid.next = null;
+        
+//         return head;
+        
+//     }
+    
+    
+    public ListNode deleteMiddle(ListNode head) {
+        if(head.next == null) return null;
+        
         ListNode slow = head;
-        ListNode fast = head;
+        ListNode fast = head.next.next;
         
         while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
         }
-        return slow;
-    }
-    
-    
-    public ListNode deleteMiddle(ListNode head) {
-        if(head == null || head.next == null) return null;
-        ListNode mid = findMiddle(head);
-        ListNode curr = head;
-        while(curr.next != null && curr.next != mid){
-            curr = curr.next;
-        }
-        
-        curr.next = mid.next;
-        mid.next = null;
-        
+        // ListNode slowNext = slow;
+        slow.next = slow.next.next;
+        // slowNext.next = null;
         return head;
-        
     }
+    
 }
