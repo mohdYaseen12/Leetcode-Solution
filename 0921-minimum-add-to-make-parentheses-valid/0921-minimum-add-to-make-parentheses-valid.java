@@ -1,17 +1,18 @@
 class Solution {
     public int minAddToMakeValid(String s) {
         int count = 0;
-        Stack<Character> st = new Stack<>();
+        int ans = 0;
         for(char ch : s.toCharArray()){
-            if(ch == '(') st.push(ch);
-            else{
-                if(!st.isEmpty() && st.peek() == '(') st.pop();
-                else st.push(ch);
+            if(ch == '(') count++;
+            else count--;
+            
+            if(count < 0){ // we have to add corresponding open bracket before we move forward;
+                ans += Math.abs(count);
+                count = 0;
             }
-           
         }
-        return st.size();
         
-        
+        ans += Math.abs(count);
+        return ans;
     }
 }
