@@ -11,11 +11,16 @@ class Solution {
             }
         }
         
-        // int i=0;
+        int i=0;
         long ans = 0;
-        for(int i=n;i>n-forget;i--){
-            ans = (ans + peopleKnow[i])%mod;
-            // System.out.println(ans);
+        // for(int i=n;i>n-forget;i--){
+        //     ans = (ans + peopleKnow[i])%mod;
+        //     // System.out.println(ans);
+        // }
+        
+        while(forget-- > 0){
+            ans = (ans + peopleKnow[n-i])%mod;
+            i++;
         }
         return (int)ans;
     }
