@@ -37,4 +37,12 @@
 |  |
 | ------- |
 | [0700-search-in-a-binary-search-tree](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/0700-search-in-a-binary-search-tree) |
+## Linked List
+|  |
+| ------- |
+| [0061-rotate-list](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/0061-rotate-list) |
+## Two Pointers
+|  |
+| ------- |
+| [0061-rotate-list](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/0061-rotate-list) |
 <!---LeetCode Topics End-->
