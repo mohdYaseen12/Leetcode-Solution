@@ -8,6 +8,7 @@
 | ------- |
 | [1351-count-negative-numbers-in-a-sorted-matrix](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/1351-count-negative-numbers-in-a-sorted-matrix) |
 | [1886-determine-whether-matrix-can-be-obtained-by-rotation](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/1886-determine-whether-matrix-can-be-obtained-by-rotation) |
+| [3660-jump-game-ix](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3660-jump-game-ix) |
 ## Binary Search
 |  |
 | ------- |
@@ -45,4 +46,8 @@
 |  |
 | ------- |
 | [0061-rotate-list](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/0061-rotate-list) |
+## Dynamic Programming
+|  |
+| ------- |
+| [3660-jump-game-ix](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3660-jump-game-ix) |
 <!---LeetCode Topics End-->
