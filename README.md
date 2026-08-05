@@ -9,6 +9,7 @@
 | [1351-count-negative-numbers-in-a-sorted-matrix](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/1351-count-negative-numbers-in-a-sorted-matrix) |
 | [1886-determine-whether-matrix-can-be-obtained-by-rotation](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/1886-determine-whether-matrix-can-be-obtained-by-rotation) |
 | [3660-jump-game-ix](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3660-jump-game-ix) |
+| [3731-find-missing-elements](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3731-find-missing-elements) |
 ## Binary Search
 |  |
 | ------- |
@@ -50,4 +51,12 @@
 |  |
 | ------- |
 | [3660-jump-game-ix](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3660-jump-game-ix) |
+## Hash Table
+|  |
+| ------- |
+| [3731-find-missing-elements](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3731-find-missing-elements) |
+## Sorting
+|  |
+| ------- |
+| [3731-find-missing-elements](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3731-find-missing-elements) |
 <!---LeetCode Topics End-->
