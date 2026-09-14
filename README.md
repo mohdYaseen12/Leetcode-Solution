@@ -59,4 +59,12 @@
 |  |
 | ------- |
 | [3731-find-missing-elements](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/3731-find-missing-elements) |
+## Math
+|  |
+| ------- |
+| [0836-rectangle-overlap](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/0836-rectangle-overlap) |
+## Geometry
+|  |
+| ------- |
+| [0836-rectangle-overlap](https://github.com/mohdYaseen12/Leetcode-Solution/tree/master/0836-rectangle-overlap) |
 <!---LeetCode Topics End-->
